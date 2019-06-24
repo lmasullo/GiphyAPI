@@ -28,6 +28,49 @@ $(document).ready(() => {
     //Get the value of the button
     const btnVal = $(this).text();
     console.log(btnVal);
+
+    
+
+    $.ajax({
+      url: "//api.giphy.com/v1/gifs/search?q="+btnVal+"&api_key=2zVk8xHjtG1Sugh6MQgbXltQsEUC8LjD&limit=10&rating=g",  
+      method: "GET"
+    }).then(function(response) {
+      //console.log(response.data);
+      //console.log(response.data.embed_url);
+
+      //let imgURL = "http://api.giphy.com/gifs/gifnews-wwii-13psSo4CGyjosg"
+
+      
+
+      response.data.forEach(function(element){
+        console.log(element.embed_url);
+
+        let imgURL = element.embed_url;
+
+        let newImage = $('<img/>', {
+          src: imgURL
+        });
+
+        $("#planes").append(newImage);
+
+        //let newImage ="<img src='https://giphy.com/gifs/erika-wish-jvngsica-xCGnOu4VH3uta'>"
+        //$("#planes").append(newImage);
+
+        // var newImage = $('<img />', { 
+        //   id: 'Myid',
+        //   src: element.url,
+        //   alt: 'MyAlt'
+        // });
+        // newImage.appendTo($('#planes'));
+
+      })
+
+    });//End Ajax Get
+
+    
+
+
+
   });
 
   
