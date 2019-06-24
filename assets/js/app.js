@@ -32,10 +32,10 @@ $(document).ready(() => {
     
 
     $.ajax({
-      url: "//api.giphy.com/v1/gifs/search?q="+btnVal+"&api_key=2zVk8xHjtG1Sugh6MQgbXltQsEUC8LjD&limit=10&rating=g",  
+      url: "http://api.giphy.com/v1/gifs/search?q="+btnVal+"&api_key=2zVk8xHjtG1Sugh6MQgbXltQsEUC8LjD&limit=10&rating=g",  
       method: "GET"
     }).then(function(response) {
-      //console.log(response.data);
+      console.log(response.data);
       //console.log(response.data.embed_url);
 
       //let imgURL = "http://api.giphy.com/gifs/gifnews-wwii-13psSo4CGyjosg"
@@ -47,9 +47,12 @@ $(document).ready(() => {
 
         let imgURL = element.embed_url;
 
-        let newImage = $('<img/>', {
+        let newImage = $('<img>', {
           src: imgURL
         });
+
+
+
 
         $("#planes").append(newImage);
 
