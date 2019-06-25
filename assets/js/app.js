@@ -42,7 +42,7 @@ $(document).ready(() => {
 
   // Click event for the buttons, have to use .on instead if .click to have access to future button elements
   //Added tap touchstart for mobile devices
-  $(document).on('click tap','.btnTopics',function(){
+  $(document).on('click','.btnTopics',function(){
     console.log('Button Clicked');
 
     alert("tap");
