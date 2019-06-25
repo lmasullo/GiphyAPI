@@ -41,7 +41,7 @@ $(document).ready(() => {
   buildButtons();
 
   // Click event for the buttons, have to use .on instead if .click to have access to future button elements
-  $(document).on('click','.btnTopics',function(){
+  $(document).on('click tap touchstart','.btnTopics',function(){
     console.log('Button Clicked');
 
     // Clear the div
