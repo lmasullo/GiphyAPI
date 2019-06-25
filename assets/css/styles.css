@@ -17,3 +17,7 @@ img {
 .spanPlanes {
   float: left;
 }
+
+#validate {
+  color: red;
+}

@@ -34,23 +34,23 @@ $(document).ready(() => {
       //Append the buttons to the buttons div on the index.html page
       $('#buttons').append(newBtn);
     });
-    console.log(topics);
+    //console.log(topics);
   }
 
   // Call the Build Buttons Function on page load
   buildButtons();
 
   // Click event for the buttons, have to use .on instead if .click to have access to future button elements
-  $(document).on('click tap touchstart','.btnTopics',function(){
+  //Added tap touchstart for mobile devices
+  $(document).on('click tap','.btnTopics',function(){
     console.log('Button Clicked');
 
     // Clear the div
     $('#planes').empty();
-    // $('.spanplanes').empty();
 
     // Get the value of the button
     const btnVal = $(this).text();
-    console.log(btnVal);
+    //console.log(btnVal);
 
     //Set the Giphy url based on the button clicked
     const btnURL = `http://api.giphy.com/v1/gifs/search?q=${btnVal}&api_key=2zVk8xHjtG1Sugh6MQgbXltQsEUC8LjD&limit=10&rating=g`;
@@ -60,7 +60,7 @@ $(document).ready(() => {
       url: btnURL,
       method: 'GET',
     }).then((response) => {
-      console.log(response.data[0].images);
+      //console.log(response.data[0].images);
 
       // Loop through the returned data
       for (let i = 0; i < response.data.length; i++) {
@@ -99,6 +99,8 @@ $(document).ready(() => {
 
       //Function to animate the gif on click
       $('img').click(function () {
+        console.log("Image Clicked to Annimate");
+        
         //Check if the gif is the annimated or still version and then switch out the url
         if ($(this).attr('anni') === 'false') {
           const newSrc = $(this).attr('anniSrc');
@@ -113,15 +115,34 @@ $(document).ready(() => {
     }); // End Ajax Get
   });// End Click on Topics Buttons
 
-  //Function to add the user entered button
+  //Function to add the user entered Plane
   $('#btnAdd').click(() => {
     console.log('Add Plane Button Clicked');
     const newPlane = $('#addPlane').val();
-    console.log(newPlane);
-    topics.push(newPlane);
-    console.log(topics);
+    //console.log(newPlane);
 
-    // Call the Build Buttons Function
-    buildButtons();
+    if (newPlane != ""){
+      //Clear the validate message
+      $("#validate").empty();
+
+      //Push the new plane to the topics array
+      topics.push(newPlane);
+
+      // Call the Build Buttons Function
+      buildButtons();
+    }else{
+      //Nothing entered, tell user
+      console.log("Field Empty");
+      $("#validate").html("Please enter a plane's name.");
+    }
+
+    
   });
+
+  //Favorites
+  $("#spanCont").hover(function(){
+    console.log("hover");
+    
+  });
+
 }); // End document ready
