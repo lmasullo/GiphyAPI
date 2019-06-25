@@ -41,11 +41,8 @@ $(document).ready(() => {
   buildButtons();
 
   // Click event for the buttons, have to use .on instead if .click to have access to future button elements
-  //Added tap touchstart for mobile devices
   $(document).on('click','.btnTopics',function(){
     console.log('Button Clicked');
-
-    alert("tap");
 
     // Clear the div
     $('#planes').empty();
