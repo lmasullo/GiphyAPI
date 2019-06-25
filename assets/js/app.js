@@ -20,28 +20,28 @@ $(document).ready(() => {
     'A-26 Invader',
   ];
 
-  //Function to build the buttons from the topics array
+  // Function to build the buttons from the topics array
   function buildButtons() {
     // 1st clear the div
     $('#buttons').empty();
     // Loop over the array and build the buttons and display
     topics.forEach((element) => {
-      let newBtn = $('<button/>', {
+      const newBtn = $('<button/>', {
         type: 'button',
         text: element,
         class: 'btn btn-primary btnTopics',
       });
-      //Append the buttons to the buttons div on the index.html page
+      // Append the buttons to the buttons div on the index.html page
       $('#buttons').append(newBtn);
     });
-    //console.log(topics);
+    // console.log(topics);
   }
 
   // Call the Build Buttons Function on page load
   buildButtons();
 
   // Click event for the buttons, have to use .on instead if .click to have access to future button elements
-  $(document).on('click','.btnTopics',function(){
+  $(document).on('click', '.btnTopics', function () {
     console.log('Button Clicked');
 
     // Clear the div
@@ -49,21 +49,20 @@ $(document).ready(() => {
 
     // Get the value of the button
     const btnVal = $(this).text();
-    //console.log(btnVal);
+    // console.log(btnVal);
 
-    //Set the Giphy url based on the button clicked
-    const btnURL = `http://api.giphy.com/v1/gifs/search?q=${btnVal}&api_key=2zVk8xHjtG1Sugh6MQgbXltQsEUC8LjD&limit=10&rating=g`;
+    // Set the Giphy url based on the button clicked
+    const btnURL = `https://api.giphy.com/v1/gifs/search?q=${btnVal}&api_key=2zVk8xHjtG1Sugh6MQgbXltQsEUC8LjD&limit=10&rating=g`;
 
-    //Ajax function to get the images
+    // Ajax function to get the images
     $.ajax({
       url: btnURL,
       method: 'GET',
     }).then((response) => {
-      //console.log(response.data[0].images);
+      // console.log(response.data[0].images);
 
       // Loop through the returned data
       for (let i = 0; i < response.data.length; i++) {
- 
         // Create an inline span to hold everything
         const spanCont = $('<div>', {
           class: 'spanPlanes',
@@ -96,11 +95,11 @@ $(document).ready(() => {
         $('#planes').append(spanCont);
       } // End loop over result
 
-      //Function to animate the gif on click
+      // Function to animate the gif on click
       $('img').click(function () {
-        console.log("Image Clicked to Annimate");
-        
-        //Check if the gif is the annimated or still version and then switch out the url
+        console.log('Image Clicked to Annimate');
+
+        // Check if the gif is the annimated or still version and then switch out the url
         if ($(this).attr('anni') === 'false') {
           const newSrc = $(this).attr('anniSrc');
           $(this).attr('src', newSrc);
@@ -109,43 +108,38 @@ $(document).ready(() => {
           const newSrc = $(this).attr('stillSrc');
           $(this).attr('src', newSrc);
           $(this).attr('anni', 'false');
-        }//End check if annimated or still gif
+        } // End check if annimated or still gif
       }); // End image click
     }); // End Ajax Get
-  });// End Click on Topics Buttons
+  }); // End Click on Topics Buttons
 
-  //Function to add the user entered Plane
+  // Function to add the user entered Plane
   $('#btnAdd').click(() => {
     console.log('Add Plane Button Clicked');
     const newPlane = $('#addPlane').val();
-    //console.log(newPlane);
+    // console.log(newPlane);
 
-    if (newPlane != ""){
-      //Clear the validate message
-      $("#validate").empty();
+    if (newPlane != '') {
+      // Clear the validate message
+      $('#validate').empty();
 
-      //Push the new plane to the topics array
+      // Push the new plane to the topics array
       topics.push(newPlane);
 
-      //Clear the add plane field
-      $("#addPlane").val("");
-
+      // Clear the add plane field
+      $('#addPlane').val('');
 
       // Call the Build Buttons Function
       buildButtons();
-    }else{
-      //Nothing entered, tell user
-      console.log("Field Empty");
-      $("#validate").html("Please enter a plane's name.");
+    } else {
+      // Nothing entered, tell user
+      console.log('Field Empty');
+      $('#validate').html("Please enter a plane's name.");
     }
-
-    
   });
 
-  //Favorites
-  $("#spanCont").hover(function(){
-    console.log("hover");
-    
+  // Favorites
+  $('#spanCont').hover(() => {
+    console.log('hover');
   });
-
 }); // End document ready
