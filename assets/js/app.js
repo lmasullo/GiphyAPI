@@ -45,6 +45,8 @@ $(document).ready(() => {
   $(document).on('click tap','.btnTopics',function(){
     console.log('Button Clicked');
 
+    alert("tap");
+
     // Clear the div
     $('#planes').empty();
 
@@ -127,6 +129,10 @@ $(document).ready(() => {
 
       //Push the new plane to the topics array
       topics.push(newPlane);
+
+      //Clear the add plane field
+      $("#addPlane").val("");
+
 
       // Call the Build Buttons Function
       buildButtons();
