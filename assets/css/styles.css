@@ -5,3 +5,19 @@
 .btn {
   margin: 5px;
 }
+
+img {
+  margin: 5px;
+}
+
+#planes {
+  float: left;
+}
+
+.spanPlanes {
+  /* display: inline-block; */
+  /* width: 50%; */
+  float: left;
+
+  /* background-color: blue; */
+}
