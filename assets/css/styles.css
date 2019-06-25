@@ -15,9 +15,5 @@ img {
 }
 
 .spanPlanes {
-  /* display: inline-block; */
-  /* width: 50%; */
   float: left;
-
-  /* background-color: blue; */
 }

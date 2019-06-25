@@ -20,34 +20,28 @@ $(document).ready(() => {
     'A-26 Invader',
   ];
 
-  let newBtn = '';
-
+  //Function to build the buttons from the topics array
   function buildButtons() {
     // 1st clear the div
     $('#buttons').empty();
     // Loop over the array and build the buttons and display
     topics.forEach((element) => {
-      // let newBtn = $('<button>'+element+'<button />');
-      newBtn = $('<button/>', {
+      let newBtn = $('<button/>', {
         type: 'button',
         text: element,
-        id: 'btn_refresh',
         class: 'btn btn-primary btnTopics',
       });
+      //Append the buttons to the buttons div on the index.html page
       $('#buttons').append(newBtn);
     });
     console.log(topics);
-
-    $('.btnTopics').click(() => {
-      console.log('2nd button clicks');
-    });
   }
 
-  // Call the Build Buttons Function
+  // Call the Build Buttons Function on page load
   buildButtons();
 
-  // Click event for the buttons
-  $('.btnTopics').click(function () {
+  // Click event for the buttons, have to use .on instead if .click to have access to future button elements
+  $(document).on('click','.btnTopics',function(){
     console.log('Button Clicked');
 
     // Clear the div
@@ -58,9 +52,10 @@ $(document).ready(() => {
     const btnVal = $(this).text();
     console.log(btnVal);
 
+    //Set the Giphy url based on the button clicked
     const btnURL = `http://api.giphy.com/v1/gifs/search?q=${btnVal}&api_key=2zVk8xHjtG1Sugh6MQgbXltQsEUC8LjD&limit=10&rating=g`;
-    // const btnURL = 'http://api.giphy.com/v1/gifs/search?q=husky&api_key=2zVk8xHjtG1Sugh6MQgbXltQsEUC8LjD&limit=10&rating=g';
 
+    //Ajax function to get the images
     $.ajax({
       url: btnURL,
       method: 'GET',
@@ -69,9 +64,7 @@ $(document).ready(() => {
 
       // Loop through the returned data
       for (let i = 0; i < response.data.length; i++) {
-        // response.data.forEach((element) => {
-        // console.log(element.embed_url);
-
+ 
         // Create an inline span to hold everything
         const spanCont = $('<div>', {
           class: 'spanPlanes',
@@ -104,8 +97,9 @@ $(document).ready(() => {
         $('#planes').append(spanCont);
       } // End loop over result
 
-      $('img').click(function (e) {
-        // e.preventDefault(); // prevent default behavior of <a>
+      //Function to animate the gif on click
+      $('img').click(function () {
+        //Check if the gif is the annimated or still version and then switch out the url
         if ($(this).attr('anni') === 'false') {
           const newSrc = $(this).attr('anniSrc');
           $(this).attr('src', newSrc);
@@ -114,14 +108,12 @@ $(document).ready(() => {
           const newSrc = $(this).attr('stillSrc');
           $(this).attr('src', newSrc);
           $(this).attr('anni', 'false');
-        }
-        // const anniSrc = $(this).attr('anniSrc');
-        // console.log(anniSrc);
-        // $(this).attr('src', anniSrc);
+        }//End check if annimated or still gif
       }); // End image click
     }); // End Ajax Get
-  }); // End Click on Topics Buttons
+  });// End Click on Topics Buttons
 
+  //Function to add the user entered button
   $('#btnAdd').click(() => {
     console.log('Add Plane Button Clicked');
     const newPlane = $('#addPlane').val();

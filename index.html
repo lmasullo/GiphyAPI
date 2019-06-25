@@ -1,92 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
 
-    <!-- Normalize CSS-->
-    <link rel="stylesheet" href="assets/css/normalize.css" />
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <!-- Bootstrap CSS -->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
+  <!-- Normalize CSS-->
+  <link rel="stylesheet" href="assets/css/normalize.css" />
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="assets/css/styles.css" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 
-    <title>Giphy API!</title>
-  </head>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/styles.css" />
 
-  <body>
-    <div class="container">
-      <div class="jumbotron">
-        <!-- Div to hold all the buttons -->
-        <div id="buttons"></div>
-      </div>
+  <title>Giphy API!</title>
+</head>
 
-      <div class="jumbotron">
-        <!-- Form to Add a Button -->
-        
-          <div class="form-group">
-            <label for="addPlane">Add an Airplane</label>
-            <input
-              type="text"
-              class="form-control"
-              id="addPlane"
-              aria-describedby="emailHelp"
-              placeholder="Enter an Airplane Name"
-            />
-            <small id="emailHelp" class="form-text text-muted"
-              >Try Boeing 747 or Airbus A380 if you can't think of any
-              Warbirds!</small
-            >
-          </div>
-          <button id="btnAdd" type="button" class="btn btn-primary">Submit</button>
-        </form>
-      </div>
-
-      <div id="planes">
-          <!-- <button  type="button" class="btn btn-primary">Test</button> -->
-        <!-- <img src="http://giphy.com/embed/13psSo4CGyjosg.gif"> -->
-
-        <!-- <img
-        src="https://media3.giphy.com/media/13psSo4CGyjosg/480w_s.jpg?cid=5bff5cbb5d0ff2c94d6b47706b7a9760&rid=480w_s.jpg"
-        alt="Smiley face" height="42" width="42"> -->
-      </div>
-
-      <!-- End Container -->
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <!-- Div to hold all the buttons -->
+      <div id="buttons"></div>
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
+    <div class="jumbotron">
+      <!-- Form to Add a Button -->
 
-    <!-- Ajax -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <div class="form-group">
+        <label for="addPlane">Add an Airplane</label>
+        <input type="text" class="form-control" id="addPlane" aria-describedby="emailHelp"
+          placeholder="Enter an Airplane Name" />
+        <small id="emailHelp" class="form-text text-muted">Try Boeing 747 or Airbus A380 if you can't think of any
+          Warbirds!</small>
+      </div>
+      <button id="btnAdd" type="button" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
 
-    <!-- Custom JS -->
-    <script src="assets/js/app.js"></script>
-  </body>
+    <div id="planes"></div>
+
+    <!-- End Container -->
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+
+  <!-- Ajax -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!-- Custom JS -->
+  <script src="assets/js/app.js"></script>
+</body>
+
 </html>
