@@ -40,7 +40,8 @@ $(document).ready(() => {
   // Call the Build Buttons Function on page load
   buildButtons();
 
-  // Click event for the buttons, have to use .on instead if .click to have access to future button elements
+  // Click event for the buttons, have to use .on instead of .click
+  // to have access to future button elements
   $(document).on('click', '.btnTopics', function () {
     console.log('Button Clicked');
 
