@@ -30,6 +30,7 @@ $(document).ready(() => {
         type: 'button',
         text: element,
         class: 'btn btn-primary btnTopics',
+        name: element,
       });
       // Append the buttons to the buttons div on the index.html page
       $('#buttons').append(newBtn);
