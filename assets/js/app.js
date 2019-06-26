@@ -64,8 +64,8 @@ $(document).ready(() => {
 
       // Loop through the returned data
       for (let i = 0; i < response.data.length; i++) {
-        // Create an inline span to hold everything
-        const spanCont = $('<div>', {
+        // Create a div to hold everything
+        const divCont = $('<div>', {
           class: 'spanPlanes',
         });
 
@@ -89,11 +89,11 @@ $(document).ready(() => {
         });
 
         // Append the message and image to the div
-        spanCont.append(messageDiv);
-        spanCont.append(newImage);
+        divCont.append(messageDiv);
+        divCont.append(newImage);
 
         // Append the content div to the planes div, apply css to make inline
-        $('#planes').append(spanCont);
+        $('#planes').append(divCont);
       } // End loop over result
 
       // Function to animate the gif on click
@@ -140,7 +140,7 @@ $(document).ready(() => {
   });
 
   // Favorites
-  $('#spanCont').hover(() => {
+  $('#divCont').hover(() => {
     console.log('hover');
   });
 }); // End document ready
