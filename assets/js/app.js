@@ -50,7 +50,9 @@ $(document).ready(() => {
     $('#planes').empty();
 
     // Get the value of the button
-    const btnVal = $(this).text();
+    //const btnVal = $(this).text();
+    //Use the name attribute
+    const btnVal = $(this).attr("name");
     // console.log(btnVal);
 
     // Set the Giphy url based on the button clicked
@@ -76,6 +78,7 @@ $(document).ready(() => {
         const messageDiv = $('<div>', {
           text: rating,
         });
+        // conts favorite = 
         messageDiv.append(title);
         // console.log(messageDiv);
 
@@ -141,7 +144,7 @@ $(document).ready(() => {
   });
 
   // Favorites
-  $('#divCont').hover(() => {
-    console.log('hover');
-  });
+  // $('#divCont').hover(() => {
+  //   console.log('hover');
+  // });
 }); // End document ready
