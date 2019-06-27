@@ -78,7 +78,10 @@ $(document).ready(() => {
         const messageDiv = $('<div>', {
           text: rating,
         });
+        
+        //Add Favorited checkbox and save to local storage
         // conts favorite = 
+        
         messageDiv.append(title);
         // console.log(messageDiv);
 
@@ -141,10 +144,5 @@ $(document).ready(() => {
       console.log('Field Empty');
       $('#validate').html("Please enter a plane's name.");
     }
-  });
-
-  // Favorites
-  // $('#divCont').hover(() => {
-  //   console.log('hover');
-  // });
+  });//End Add User Entered Plane
 }); // End document ready
