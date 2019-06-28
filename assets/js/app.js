@@ -35,14 +35,13 @@ $(document).ready(() => {
       // Append the buttons to the buttons div on the index.html page
       $('#buttons').append(newBtn);
     });
-    // console.log(topics);
-  }
+  }//End function build buttons
 
   // Call the Build Buttons Function on page load
   buildButtons();
 
   // Click event for the buttons, have to use .on instead of .click
-  // to have access to future button elements
+  // to have access to future (dynamic) button elements
   $(document).on('click', '.btnTopics', function () {
     console.log('Button Clicked');
 
@@ -50,7 +49,6 @@ $(document).ready(() => {
     $('#planes').empty();
 
     // Get the value of the button
-    // const btnVal = $(this).text();
     // Use the name attribute
     const btnVal = $(this).attr('name');
     // console.log(btnVal);
@@ -63,8 +61,6 @@ $(document).ready(() => {
       url: btnURL,
       method: 'GET',
     }).then((response) => {
-      // console.log(response.data[0].images);
-
       // Loop through the returned data
       for (let i = 0; i < response.data.length; i++) {
         // Create a div to hold everything
@@ -72,7 +68,7 @@ $(document).ready(() => {
           class: 'divPlanes',
         });
 
-        // Create div to display other meta datas
+        // Create div to display other meta data
         const rating = `Rating: ${response.data[i].rating}`;
         const title = `<br>Title: ${response.data[i].title}`;
         const messageDiv = $('<div>', {
@@ -82,26 +78,22 @@ $(document).ready(() => {
         // Add Favorited checkbox and save to local storage
         // conts favorite =
 
+        //Put the title in the display div
         messageDiv.append(title);
-        // console.log(messageDiv);
 
         // Create the image element to hold the returned urls
+        //Variables for the urls if the still and animated gifs
         const imgURL = response.data[i].images.fixed_height_still.url;
         const imgAnniURL = response.data[i].images.fixed_height.url;
-        // const newImage = $('<img>', {
-        //   src: imgURL,
-        //   'data-anniSrc': imgAnniURL,
-        //   'data-stillSrc': imgURL,
-        //   'data-anni': 'false',
-        // });
-
+        //Image element
         const newImage = $('<img>');
+        //Data-attributes
         newImage.attr('src', imgURL);
         newImage.attr('data-anniSrc', imgAnniURL);
         newImage.attr('data-stillSrc', imgURL);
         newImage.attr('data-anni', 'false');
 
-        // Append the message and image to the div
+        // Append the message and image to the display div
         divCont.append(messageDiv);
         divCont.append(newImage);
 
@@ -130,9 +122,10 @@ $(document).ready(() => {
   // Function to add the user entered Plane
   $('#btnAdd').click(() => {
     console.log('Add Plane Button Clicked');
+    
+    //Variable to hold the value
     const newPlane = $('#addPlane').val();
-    // console.log(newPlane);
-
+  
     if (newPlane != '') {
       // Clear the validate message
       $('#validate').empty();
