@@ -147,6 +147,9 @@ $(document).ready(() => {
         //Have to Stringify it first because localStorage only holds strings
         localStorage.setItem("favURL", JSON.stringify(favArray));     
         
+        //Display the saved favorite message
+        $("#favMess").html("Favorite Saved!");
+
         //Refresh the favDiv
         showFavs();
       });
@@ -210,11 +213,25 @@ $(document).ready(() => {
       //Append to the favorites div
       $("#favDiv").append(newFav);
     }//End loop through favorites
+
+    //Get the value of the favorites button
+    let btnVal = $("#btnFav").text();
+
+    if (btnVal === 'Show Favorites'){
+      $("#btnFav").text('Hide Favorites');
+    }else{
+      $("#btnFav").text('Show Favorites');
+      $("#favDiv").empty();
+    }
+
   }//End Function to show favorites
 
   // Function on Show Favorites button clicked
   $('#btnFav').click(() => {
     console.log('Show Favorites button clicked!');
+
+    //Clear the saved favorite message
+    $("#favMess").empty();
 
     //Call show favorites function
     showFavs();
@@ -235,6 +252,9 @@ $(document).ready(() => {
 
     //Update local storage
     localStorage.setItem("favURL", JSON.stringify(favArray));
+
+    //Display the Deleted favorite message
+    $("#favMess").html("Favorite Deleted!");
     
     //Refresh the favDiv
     showFavs();

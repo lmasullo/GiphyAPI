@@ -32,3 +32,9 @@ img {
   font-size: 12px;
   padding-left: 5px;
 }
+
+#favMess {
+  padding-left: 5px;
+  color: green;
+  font-size: 24px;
+}
