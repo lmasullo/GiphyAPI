@@ -18,6 +18,17 @@ img {
   float: left;
 }
 
+#messageDiv {
+  margin-top: 10px;
+  padding-left: 5px;
+}
+
 #validate {
   color: red;
+}
+
+#delInst {
+  font-weight: 100;
+  font-size: 12px;
+  padding-left: 5px;
 }
