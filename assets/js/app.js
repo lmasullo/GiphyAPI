@@ -217,7 +217,8 @@ $(document).ready(() => {
     //Get the value of the favorites button
     let btnVal = $("#btnFav").text();
 
-    if (btnVal === 'Show Favorites'){
+    //Change the text of the Show/Hide Favorites button
+    if (btnVal === 'Show Favorites' && favArray.length != 0){
       $("#btnFav").text('Hide Favorites');
     }else{
       $("#btnFav").text('Show Favorites');
