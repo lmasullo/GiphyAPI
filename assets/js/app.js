@@ -50,9 +50,9 @@ $(document).ready(() => {
     $('#planes').empty();
 
     // Get the value of the button
-    //const btnVal = $(this).text();
-    //Use the name attribute
-    const btnVal = $(this).attr("name");
+    // const btnVal = $(this).text();
+    // Use the name attribute
+    const btnVal = $(this).attr('name');
     // console.log(btnVal);
 
     // Set the Giphy url based on the button clicked
@@ -69,7 +69,7 @@ $(document).ready(() => {
       for (let i = 0; i < response.data.length; i++) {
         // Create a div to hold everything
         const divCont = $('<div>', {
-          class: 'spanPlanes',
+          class: 'divPlanes',
         });
 
         // Create div to display other meta datas
@@ -78,22 +78,28 @@ $(document).ready(() => {
         const messageDiv = $('<div>', {
           text: rating,
         });
-        
-        //Add Favorited checkbox and save to local storage
-        // conts favorite = 
-        
+
+        // Add Favorited checkbox and save to local storage
+        // conts favorite =
+
         messageDiv.append(title);
         // console.log(messageDiv);
 
         // Create the image element to hold the returned urls
         const imgURL = response.data[i].images.fixed_height_still.url;
         const imgAnniURL = response.data[i].images.fixed_height.url;
-        const newImage = $('<img>', {
-          src: imgURL,
-          anniSrc: imgAnniURL,
-          stillSrc: imgURL,
-          anni: 'false',
-        });
+        // const newImage = $('<img>', {
+        //   src: imgURL,
+        //   'data-anniSrc': imgAnniURL,
+        //   'data-stillSrc': imgURL,
+        //   'data-anni': 'false',
+        // });
+
+        const newImage = $('<img>');
+        newImage.attr('src', imgURL);
+        newImage.attr('data-anniSrc', imgAnniURL);
+        newImage.attr('data-stillSrc', imgURL);
+        newImage.attr('data-anni', 'false');
 
         // Append the message and image to the div
         divCont.append(messageDiv);
@@ -108,14 +114,14 @@ $(document).ready(() => {
         console.log('Image Clicked to Annimate');
 
         // Check if the gif is the annimated or still version and then switch out the url
-        if ($(this).attr('anni') === 'false') {
-          const newSrc = $(this).attr('anniSrc');
+        if ($(this).attr('data-anni') === 'false') {
+          const newSrc = $(this).attr('data-anniSrc');
           $(this).attr('src', newSrc);
-          $(this).attr('anni', 'true');
+          $(this).attr('data-anni', 'true');
         } else {
-          const newSrc = $(this).attr('stillSrc');
+          const newSrc = $(this).attr('data-stillSrc');
           $(this).attr('src', newSrc);
-          $(this).attr('anni', 'false');
+          $(this).attr('data-anni', 'false');
         } // End check if annimated or still gif
       }); // End image click
     }); // End Ajax Get
@@ -144,5 +150,5 @@ $(document).ready(() => {
       console.log('Field Empty');
       $('#validate').html("Please enter a plane's name.");
     }
-  });//End Add User Entered Plane
+  }); // End Add User Entered Plane
 }); // End document ready
