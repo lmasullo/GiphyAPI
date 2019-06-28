@@ -7,7 +7,7 @@ $(document).ready(() => {
   console.log('Document Ready');
 
   //Create the favorites array
-  const favArray = [];
+  let favArray = [];
 
   // Build the array of topics
   const topics = [
@@ -141,7 +141,10 @@ $(document).ready(() => {
         
         //Add to the localStorage of favorites
         //Have to Stringify it first because localStorage only holds strings
-        localStorage.setItem("favURL", JSON.stringify(favArray));      
+        localStorage.setItem("favURL", JSON.stringify(favArray));     
+        
+        //Refresh the favDiv
+        showFavs();
       });
 
 
@@ -175,15 +178,13 @@ $(document).ready(() => {
   }); // End Add User Entered Plane
 
   // Function to show favorites
-  $('#btnFav').click(() => {
-    console.log('Favorites button clicked!');
-
-    //Get the array of favorites
+  function showFavs(){
+  //Get the array of favorites
     //Have to Parse it back into an array
-    let favs = JSON.parse(localStorage.getItem("favURL"));
-    console.log(favs);
+    favArray = JSON.parse(localStorage.getItem("favURL"));
+    console.log(favArray);
 
-    if (favs.length === 0){
+    if (favArray.length === 0){
       //Show message that there are no favorites
       $("#delInst").html("There are No Favorites to Display");
     }else{
@@ -193,14 +194,14 @@ $(document).ready(() => {
     //Clear fav div first
     $("#favDiv").empty();
 
-    for (let i = 0; i < favs.length; i++){
-      console.log(favs[i]);
+    for (let i = 0; i < favArray.length; i++){
+      console.log(favArray[i]);
 
       //Create the img elements with the still url
       const newFav = $('<img>');
       
       //Add the src
-      newFav.attr('src', favs[i]);
+      newFav.attr('src', favArray[i]);
 
       //Add a class
       newFav.attr('class', 'favImage');
@@ -209,36 +210,43 @@ $(document).ready(() => {
       $("#favDiv").append(newFav);
       
     }//End loop through favorites
+  }//End Function to show favorites
 
-    //Function to Remove a favorite
-    $(document).on('click', '.favImage', function () {
-      console.log("Favorite Image Clicked!");
+  // Function on Show Favorites button clicked
+  $('#btnFav').click(() => {
+    console.log('Show Favorites button clicked!');
 
-      //Get the URL of the clicked image
-      let favImageClicked = $(this).attr('src');
-      console.log(favImageClicked);
-      console.log(favs);
-      
-      //Get the index of this image in the favArray
-      let indexFav = favs.indexOf(favImageClicked);
-      console.log(indexFav);
-
-      console.log(typeof indexFav);
-
-      //Remove that image from the favorites array
-      favs.splice(indexFav, 1);   
-
-      console.log(favs);
-
-      //Update local storage
-      localStorage.setItem("favURL", JSON.stringify(favs));
-      
-      //Refresh the favDiv
-      
-    });
-
-
+    //Call show favorites function
+    showFavs();
   });//End Show Favorites button clicked
+
+  //Function to Remove a favorite
+  $(document).on('click', '.favImage', function () {
+    console.log("Favorite Image Clicked!");
+
+    //Get the URL of the clicked image
+    let favImageClicked = $(this).attr('src');
+    //console.log(favImageClicked);
+    //console.log(favs);
+    
+    //Get the index of this image in the favArray
+    let indexFav = favArray.indexOf(favImageClicked);
+    //console.log(indexFav);
+
+    //console.log(typeof indexFav);
+
+    //Remove that image from the favorites array
+    favArray.splice(indexFav, 1);   
+
+    //console.log(favs);
+
+    //Update local storage
+    localStorage.setItem("favURL", JSON.stringify(favArray));
+    
+    //Refresh the favDiv
+    showFavs();
+    
+  });
 
 
 }); // End document ready
