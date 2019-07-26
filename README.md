@@ -4,7 +4,7 @@ Giphy API
 
 > Description:
 
-This app accesses the Giphy API
+This app accesses the Giphy API using AJAX and lets you grab pictures of WWII Warbirds. You can click on the provided plane's buttons or enter your own. Save the ones you love to your favorites.
 
 ## Getting Started
 
@@ -24,11 +24,11 @@ To deploy this on a live system, just upload the included files to your server.
 
 ## Built With
 
-HTML, CSS, and vanilla Javascript
+HTML, CSS, and JQuery
 
 ## Demo
 
-https://lmasullo.github.io/Word-Guess/
+https://lmasullo.github.io/GiphyAPI/
 
 ## Versioning
 
