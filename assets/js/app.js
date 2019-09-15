@@ -6,7 +6,7 @@ console.log('Connected!');
 $(document).ready(() => {
   console.log('Document Ready');
 
-  //Create the favorites array - global
+  // Create the favorites array - global
   let favArray = [];
 
   // Build the array of topics
@@ -38,7 +38,7 @@ $(document).ready(() => {
       // Append the buttons to the buttons div on the index.html page
       $('#buttons').append(newBtn);
     });
-  }//End function build buttons
+  } // End function build buttons
 
   // Call the Build Buttons Function on page load
   buildButtons();
@@ -63,49 +63,48 @@ $(document).ready(() => {
       url: btnURL,
       method: 'GET',
     }).then((response) => {
-
       console.log(response.data);
-      
+
       // Loop through the returned data
       for (let i = 0; i < response.data.length; i++) {
         // Create a div to hold everything, plane image, title, etc.
         const divCont = $('<div>');
 
-        //Add the class attribute
+        // Add the class attribute
         divCont.attr('class', 'divPlanes');
 
         // Create div to display other meta data
         const messageDiv = $('<div>');
 
-        //Add the id attribute
+        // Add the id attribute
         messageDiv.attr('id', 'messageDiv');
-        
-        //Set the data to add to this div
+
+        // Set the data to add to this div
         const title = `Title: ${response.data[i].title}<br>`;
         const rating = `Rating: ${response.data[i].rating}<br>`;
-        
+
         // Add Favorite link
         const favorite = $("<a href='#'>Save as Favorite</a><br>");
-        
-        //Add the class attribute
+
+        // Add the class attribute
         favorite.attr('class', 'favorite');
 
-        //Put the title in the display div
-        messageDiv.append(title,rating,favorite);
+        // Put the title in the display div
+        messageDiv.append(title, rating, favorite);
 
         // Create the image element to hold the returned urls
-        //Variables for the urls if the still and animated gifs
+        // Variables for the urls if the still and animated gifs
         const imgURL = response.data[i].images.fixed_height_still.url;
         const imgAnniURL = response.data[i].images.fixed_height.url;
-        //Image element
+        // Image element
         const newImage = $('<img>');
-        //Data-attributes
+        // Data-attributes
         newImage.attr('src', imgURL);
         newImage.attr('data-anniSrc', imgAnniURL);
         newImage.attr('data-stillSrc', imgURL);
         newImage.attr('data-anni', 'false');
 
-        //Add the still image url to the favorite link
+        // Add the still image url to the favorite link
         favorite.attr('data-stillUrl', imgURL);
 
         // Append the message and image to the display div
@@ -132,25 +131,25 @@ $(document).ready(() => {
         } // End check if annimated or still gif
       }); // End image click
 
-      //Save as Favorite link Clicked
+      // Save as Favorite link Clicked
       $(document).on('click', '.favorite', function () {
-        //Favorite link clicked
-        console.log("Favorite Clicked!");
-        
-        //Get the still url of the clicked image
-        let favURL = $(this).attr('data-stillURL');
+        // Favorite link clicked
+        console.log('Favorite Clicked!');
 
-        //Push the favID to the favArray
+        // Get the still url of the clicked image
+        const favURL = $(this).attr('data-stillURL');
+
+        // Push the favID to the favArray
         favArray.push(favURL);
-        
-        //Add to the localStorage of favorites
-        //Have to Stringify it first because localStorage only holds strings
-        localStorage.setItem("favURL", JSON.stringify(favArray));     
-        
-        //Display the saved favorite message
-        $("#favMess").html("Favorite Saved!");
 
-        //Refresh the favDiv
+        // Add to the localStorage of favorites
+        // Have to Stringify it first because localStorage only holds strings
+        localStorage.setItem('favURL', JSON.stringify(favArray));
+
+        // Display the saved favorite message
+        $('#favMess').html('Favorite Saved!');
+
+        // Refresh the favDiv
         showFavs();
       });
     }); // End Ajax Get
@@ -159,10 +158,10 @@ $(document).ready(() => {
   // Function to add the user entered Plane
   $('#btnAdd').click(() => {
     console.log('Add Plane Button Clicked');
-    
-    //Variable to hold the value
+
+    // Variable to hold the value
     const newPlane = $('#addPlane').val();
-  
+
     if (newPlane != '') {
       // Clear the validate message
       $('#validate').empty();
@@ -183,81 +182,80 @@ $(document).ready(() => {
   }); // End Add User Entered Plane
 
   // Function to show favorites
-  function showFavs(){
-  //Get the array of favorites
-    //Have to Parse it back into an array
-    favArray = JSON.parse(localStorage.getItem("favURL"));
+  function showFavs() {
+    // Get the array of favorites
+    // Have to Parse it back into an array
+    favArray = JSON.parse(localStorage.getItem('favURL'));
 
-    //Check if there are any favorites in local storage
-    if (favArray.length === 0){
-      //Show message that there are no favorites
-      $("#delInst").html("There are No Favorites to Display");
-    }else{
-      $("#delInst").html("Click the Image to Delete");
+    // Check if there are any favorites in local storage
+    if (favArray.length === 0) {
+      // Show message that there are no favorites
+      $('#delInst').html('There are No Favorites to Display');
+    } else {
+      $('#delInst').html('Click the Image to Delete');
     }
 
-    //Clear fav div first
-    $("#favDiv").empty();
+    // Clear fav div first
+    $('#favDiv').empty();
 
-    //Loop over the favorites array
-    for (let i = 0; i < favArray.length; i++){
-      //Create the img elements with the still url
+    // Loop over the favorites array
+    for (let i = 0; i < favArray.length; i++) {
+      // Create the img elements with the still url
       const newFav = $('<img>');
-      
-      //Add the src
+
+      // Add the src
       newFav.attr('src', favArray[i]);
 
-      //Add a class
+      // Add a class
       newFav.attr('class', 'favImage');
 
-      //Append to the favorites div
-      $("#favDiv").append(newFav);
-    }//End loop through favorites
+      // Append to the favorites div
+      $('#favDiv').append(newFav);
+    } // End loop through favorites
 
-    //Get the value of the favorites button
-    let btnVal = $("#btnFav").text();
+    // Get the value of the favorites button
+    const btnVal = $('#btnFav').text();
 
-    //Change the text of the Show/Hide Favorites button
-    if (btnVal === 'Show Favorites' && favArray.length != 0){
-      $("#btnFav").text('Hide Favorites');
-    }else{
-      $("#btnFav").text('Show Favorites');
-      $("#favDiv").empty();
+    // Change the text of the Show/Hide Favorites button
+    if (btnVal === 'Show Favorites' && favArray.length != 0) {
+      $('#btnFav').text('Hide Favorites');
+    } else {
+      $('#btnFav').text('Show Favorites');
+      $('#favDiv').empty();
     }
-
-  }//End Function to show favorites
+  } // End Function to show favorites
 
   // Function on Show Favorites button clicked
   $('#btnFav').click(() => {
     console.log('Show Favorites button clicked!');
 
-    //Clear the saved favorite message
-    $("#favMess").empty();
+    // Clear the saved favorite message
+    $('#favMess').empty();
 
-    //Call show favorites function
+    // Call show favorites function
     showFavs();
-  });//End Show Favorites button clicked
+  }); // End Show Favorites button clicked
 
-  //Function to Remove a favorite
+  // Function to Remove a favorite
   $(document).on('click', '.favImage', function () {
-    console.log("Favorite Image Clicked!");
+    console.log('Favorite Image Clicked!');
 
-    //Get the URL of the clicked image
-    let favImageClicked = $(this).attr('src');
-    
-    //Get the index of this image in the favArray
-    let indexFav = favArray.indexOf(favImageClicked);
+    // Get the URL of the clicked image
+    const favImageClicked = $(this).attr('src');
 
-    //Remove that image from the favorites array
+    // Get the index of this image in the favArray
+    const indexFav = favArray.indexOf(favImageClicked);
+
+    // Remove that image from the favorites array
     favArray.splice(indexFav, 1);
 
-    //Update local storage
-    localStorage.setItem("favURL", JSON.stringify(favArray));
+    // Update local storage
+    localStorage.setItem('favURL', JSON.stringify(favArray));
 
-    //Display the Deleted favorite message
-    $("#favMess").html("Favorite Deleted!");
-    
-    //Refresh the favDiv
+    // Display the Deleted favorite message
+    $('#favMess').html('Favorite Deleted!');
+
+    // Refresh the favDiv
     showFavs();
-  });//End function to remove a favorite
+  }); // End function to remove a favorite
 }); // End document ready
